@@ -9,13 +9,13 @@ import shutil
 import subprocess
 import tempfile
 
-DEVICE_TYPES = ["default", "AutoSnow CPU", "AutoSnow Micro"]
-PLATFORMIO_PROJECT_DIR = tempfile.mkdtemp(prefix="autosnow_")
+DEVICE_TYPES = ["default", "default1", "default2"]
+PLATFORMIO_PROJECT_DIR = tempfile.mkdtemp(prefix="tbprovisioner_")
 
 class ThingsBoardProvisioner(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("AutoSnow Provisioner")
+        self.title("Thingsboard Device Provisioner")
         self.geometry("600x620")
         self.resizable(False, False)
 
@@ -24,16 +24,16 @@ class ThingsBoardProvisioner(tk.Tk):
         self.ino_path = None
 
         # UI
-        ttk.Label(self, text="AutoSnow Dashboard URL:").grid(row=0, column=0, sticky="w", padx=10, pady=5)
-        self.tb_url_var = tk.StringVar(value="http://172.20.6.78")
+        ttk.Label(self, text="Thingsboard Dashboard URL:").grid(row=0, column=0, sticky="w", padx=10, pady=5)
+        self.tb_url_var = tk.StringVar(value="http://localhost")
         ttk.Entry(self, textvariable=self.tb_url_var, width=55).grid(row=0, column=1, padx=10, pady=5)
 
         ttk.Label(self, text="Tenant Username:").grid(row=1, column=0, sticky="w", padx=10, pady=5)
-        self.user_var = tk.StringVar(value="whydidtheboy@gmail.com")
+        self.user_var = tk.StringVar(value="tenant@thingsboard.org")
         ttk.Entry(self, textvariable=self.user_var, width=55).grid(row=1, column=1, padx=10, pady=5)
 
         ttk.Label(self, text="Tenant Password:").grid(row=2, column=0, sticky="w", padx=10, pady=5)
-        self.pass_var = tk.StringVar(value="1CuM<3APzxRm")
+        self.pass_var = tk.StringVar(value="tenant")
         ttk.Entry(self, textvariable=self.pass_var, show="*", width=55).grid(row=2, column=1, padx=10, pady=5)
 
         ttk.Label(self, text="New Customer Name:").grid(row=3, column=0, sticky="w", padx=10, pady=5)
